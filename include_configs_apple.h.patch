@@ -1,0 +1,20 @@
+diff --git a/apple.h b/apple.h
+index 8d39e7d..c6e01d7 100644
+--- a/apple.h
++++ b/apple.h
+@@ -4,10 +4,10 @@
+ #include <linux/sizes.h>
+ 
+ /* Environment */
+-#define ENV_DEVICE_SETTINGS \
+-	"stdin=serial,usbkbd,spikbd\0" \
+-	"stdout=serial,vidconsole\0" \
+-	"stderr=serial,vidconsole\0"
++#define ENV_DEVICE_SETTINGS\
++	"stdin=nulldev\0" \
++	"stdout=nulldev\0" \
++	"stderr=nulldev\0"
+ 
+ #if CONFIG_IS_ENABLED(CMD_NVME)
+        #define BOOT_TARGET_NVME(func) func(NVME, nvme, 0)
+

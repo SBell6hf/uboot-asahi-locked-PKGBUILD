@@ -1,0 +1,12 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type = Package
+Target = grub
+Target = uboot-asahi-locked
+[Action]
+Description = Unrestrict GRUB's simple linux boot entry.
+Depends = sed
+When = PostTransaction
+Exec = /usr/bin/sed -i -E 's/CLASS\} \\\$menuentry_id_option '"'"'gnulinux-simple-\$boot_device_id/CLASS\} --unrestricted \\\$menuentry_id_option '"'"'gnulinux-simple-\$boot_device_id/g' /etc/grub.d/10_linux

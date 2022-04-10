@@ -1,0 +1,4 @@
+#!/bin/bash
+echo 'set superusers="root"'
+echo 'password_pbkdf2 root '"$(grub_password="$(tr -dc 'a-zA-Z0-9' </dev/random | head -c 100)" expect -c 'set timeout 10; log_user 0; spawn grub-mkpasswd-pbkdf2; expect ":"; send "$env(grub_password)\n"; expect ":"; send "$env(grub_password)\n"; interact' | grep 'hash of your password is' | tail -n 1 | sed -E 's/^.+hash of your password is //g')"
+unset grub_password

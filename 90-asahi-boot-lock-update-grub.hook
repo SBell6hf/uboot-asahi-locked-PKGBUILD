@@ -1,0 +1,11 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Type = Package
+Target = uboot-asahi-locked
+[Action]
+Description = Update grub.
+Depends = grub
+When = PostTransaction
+Exec = /bin/bash -c 'update-grub || (mkdir -p /boot/grub && grub-mkconfig -o /boot/grub/grub.cfg)'
